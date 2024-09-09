@@ -24,12 +24,21 @@ public class RandomExceptionsClass {
 
     private static void callMethod3(ArrayList<String> stringArraysList) {
         callMethod6("");
-        callMethod3(stringArraysList);
+        int index = stringArraysList.size();
+        callMethod3(stringArraysList, index-1);
+    }
+
+    private static void callMethod3(ArrayList<String> stringArraysList, int index) {
+        callMethod6("");
+        if (index<0){
+            return;
+        }
+        callMethod3(stringArraysList, index-1);
     }
 
     private static Collection<String> callMethod1() throws IOException {
         callMethod2(100000000, 10-10);
-        return new LinkedList<>();
+        return new ArrayList<>();
     }
 
     public static int callMethod2(int a, int b) throws IOException {
@@ -38,7 +47,11 @@ public class RandomExceptionsClass {
         fis.read();
 
         if(fis.available() > 0) throw new RuntimeException();
-        int num = callMethod4("124O");
+        int num = callMethod4("1240");
+        if (b == 0) {
+            System.out.println("You can't divide by zero\nError code: -1");
+            return -1;
+        }
         return a/b;
     }
 
@@ -50,7 +63,7 @@ public class RandomExceptionsClass {
     private static void callMethod5(String s) {
         callMethod6("");
         String[] strings = new String[5];
-        for (int i = 1; i <= strings.length; i++){
+        for (int i = 1; i < strings.length; i++){
             strings[i] = s;
         }
     }
